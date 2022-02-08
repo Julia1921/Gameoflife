@@ -39,6 +39,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
      }, 
      plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({template: './dist/index.html'})
     ],  
  }
