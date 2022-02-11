@@ -1,6 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+
+const cssLoaders = extra => {
+    const loaders = [
+      {
+        loader: MiniCssExtractPlugin.loader,
+      },
+      'css-loader'
+    ]
+  
+    if (extra) {
+      loaders.push(extra)
+    }
+  
+    return loaders
+  }
+  
 
  module.exports = {
      mode: 'development',
@@ -27,18 +46,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
      module: {
          rules: [
              {
-                 test: /\.(scss|.css)$/,
-                 use: ['style-loader', 'css-loader', 'sass-loader']
+                 test: /\.css$/,
+                 use: cssLoaders()
+             },
+             {
+                test: /\.s[ac]ss$/,
+                use: cssLoaders('sass-loader')
              },
              {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: ['ts-loader'],
                 exclude: /node_modules/,
             },
          ]
      }, 
      plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({template: './dist/index.html'})
+        new MiniCssExtractPlugin({filename: '[name].css'}),
+        new HtmlWebpackPlugin({template: './dist/index.html'}),
+        new ESLintPlugin()
     ],  
  }
