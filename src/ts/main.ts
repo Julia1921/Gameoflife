@@ -32,15 +32,15 @@ class RectangleShape {
 }
 
 function requestAnimation(): void {
-  for(let i=0; i<=square.length; i++){
-    rect.clear()
-    rect.draw()
-    rect.movePosition(0,0.1)
+  rect.clear()
+  for(let item of square){
+    item.draw()
+    item.movePosition(0,0.1)
   }
   window.requestAnimationFrame(requestAnimation)
 }
 
-const rect = new RectangleShape(25, 25, 1, 1)
+const rect = new RectangleShape(25, 25, 10, 10)
 rect.setContext(canvas.getContext('2d'))
 square.push(rect)
 
