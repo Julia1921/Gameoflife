@@ -1,15 +1,5 @@
 let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
-// function canvasDraw () {
-//     if (canvas.getContext) {
-//         var ctx = canvas.getContext('2d');
-    
-//         ctx.strokeRect(25,25,100,100);
-//         ctx.strokeRect(130,25,100,100);
-//       }
-// }
-    
-// canvasDraw()
-
+let square: any = []
 
 class RectangleShape {
   x: number
@@ -31,19 +21,24 @@ class RectangleShape {
   draw(){
     this.context.strokeRect(this.x,this.y,this.width, this.height);
   }
+
+  movePosition(num1: number, num2: number){
+    this.x= this.x + num1
+    this.y= this.y + num2
+  }
 }
-const rect = new RectangleShape(25, 25, 100, 100)
+
+function requestAnimation(): void {
+  for(let i=0; i<=square.length; i++){
+    rect.draw()
+    rect.movePosition(0,10)
+  }
+  window.requestAnimationFrame(requestAnimation)
+}
+
+const rect = new RectangleShape(25, 25, 10, 10)
 rect.setContext(canvas.getContext('2d'))
-rect.draw()
+square.push(rect)
 
-// const rect1 = new RectangleShape(0, 0, 100, 100)
-// rect.setContext(canvas.getContext('2d'))
-// rect.draw()
-
-// const rect2 = new RectangleShape(0, 0, 100, 100)
-// rect.setContext(canvas.getContext('2d'))
-// rect.draw()
-
-// const rect3 = new RectangleShape(0, 0, 100, 100)
-// rect.setContext(canvas.getContext('2d'))
-// rect.draw()
+requestAnimation()
+console.log(square)
