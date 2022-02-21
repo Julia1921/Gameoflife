@@ -26,19 +26,24 @@ class RectangleShape {
     this.x= this.x + num1
     this.y= this.y + num2
   }
+  clear(){
+    this.context.clearRect(0, 0, canvas.width, canvas.height)
+  }
 }
 
 function requestAnimation(): void {
   for(let i=0; i<=square.length; i++){
+    rect.clear()
     rect.draw()
-    rect.movePosition(0,10)
+    rect.movePosition(0,0.1)
   }
   window.requestAnimationFrame(requestAnimation)
 }
 
-const rect = new RectangleShape(25, 25, 10, 10)
+const rect = new RectangleShape(25, 25, 1, 1)
 rect.setContext(canvas.getContext('2d'))
 square.push(rect)
 
 requestAnimation()
+
 console.log(square)
