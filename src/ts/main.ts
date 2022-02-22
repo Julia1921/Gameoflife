@@ -1,49 +1,35 @@
-let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
-let square: any = []
+export let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
+export let figures: any = []
 
-class RectangleShape {
+//Базовый класс
+export default class basicClass {
   x: number
   y: number
   width: number
   height: number
   context: any
 
-  constructor(x: number, y: number, width: number, height: number) {
+  constructor(context: any, x: number, y: number, width: number, height: number) {
+    this.context = context
     this.x = x
     this.y = y 
     this.width = width
     this.height = height
   }
-
-  setContext(context: any)  {
-    this.context = context
-  }
-  draw(){
-    this.context.strokeRect(this.x,this.y,this.width, this.height);
-  }
-
   movePosition(num1: number, num2: number){
     this.x= this.x + num1
     this.y= this.y + num2
   }
-  clear(){
-    this.context.clearRect(0, 0, canvas.width, canvas.height)
-  }
 }
 
-function requestAnimation(): void {
-  rect.clear()
-  for(let item of square){
-    item.draw()
+ function requestAnimation(): void {
+  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+  for(let item of figures){
+    item.drawCircle()
     item.movePosition(0,0.1)
   }
   window.requestAnimationFrame(requestAnimation)
 }
 
-const rect = new RectangleShape(25, 25, 10, 10)
-rect.setContext(canvas.getContext('2d'))
-square.push(rect)
-
-requestAnimation()
-
-console.log(square)
+// requestAnimation()
+console.log(figures)

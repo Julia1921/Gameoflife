@@ -1,4 +1,6 @@
 import './scss/style.scss'
-import './ts/main'
+import './ts/circle'
+import './ts/square'
+
 
 
