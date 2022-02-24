@@ -1,35 +1,27 @@
-export let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
-export let figures: any = []
+import { ellipseShape } from "./ellipseShape";
+import { rectangleShape } from "./rectangleShape";
 
-//Базовый класс
-export default class basicClass {
-  x: number
-  y: number
-  width: number
-  height: number
-  context: any
+let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
+let figures: any = []
 
-  constructor(context: any, x: number, y: number, width: number, height: number) {
-    this.context = context
-    this.x = x
-    this.y = y 
-    this.width = width
-    this.height = height
+
+function requestAnimation(): void {
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+    for(let item of figures){
+        item.draw(75, 0, Math.PI*2, true)
+        item.movePosition(0,0.1)
+    }
+    window.requestAnimationFrame(requestAnimation)
   }
-  movePosition(num1: number, num2: number){
-    this.x= this.x + num1
-    this.y= this.y + num2
-  }
-}
+  
 
- function requestAnimation(): void {
-  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-  for(let item of figures){
-    item.drawCircle()
-    item.movePosition(0,0.1)
-  }
-  window.requestAnimationFrame(requestAnimation)
-}
 
-// requestAnimation()
-console.log(figures)
+const circle1 = new ellipseShape(canvas.getContext('2d'), 100, 100, 10, 10)
+circle1.draw(75, 0, Math.PI*2, true)
+
+const square1 = new rectangleShape(canvas.getContext('2d'), 200, 25, 150, 150)
+square1.draw()
+figures.push(circle1)
+figures.push(square1)
+
+requestAnimation()
