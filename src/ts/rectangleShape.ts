@@ -1,6 +1,6 @@
-import {aBaseObject} from './aBaseObject'
+import {ABaseObject} from './ABaseObject'
 
-export class rectangleShape extends aBaseObject {
+export class RectangleShape extends ABaseObject {
   draw(){
     this.context.strokeRect(this.x,this.y,this.width, this.height);
   }

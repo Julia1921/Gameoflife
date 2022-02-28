@@ -1,8 +1,8 @@
-import { ellipseShape } from "./ellipseShape";
-import { rectangleShape } from "./rectangleShape";
+import { EllipseShape } from "./EllipseShape";
+import { RectangleShape } from "./RectangleShape";
 
-let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
-let figures: any = []
+export let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
+let figures: ( EllipseShape | RectangleShape )[] = []
 
 
 function requestAnimation(): void {
@@ -16,12 +16,12 @@ function requestAnimation(): void {
   
 
 
-const circle1 = new ellipseShape(canvas.getContext('2d'), 100, 100, 10, 10)
-circle1.draw(75, 0, Math.PI*2, true)
+const CIRCLE_1 = new EllipseShape(100, 100, 10, 10)
+CIRCLE_1.draw(75, 0, Math.PI*2, true)
 
-const square1 = new rectangleShape(canvas.getContext('2d'), 200, 25, 150, 150)
-square1.draw()
-figures.push(circle1)
-figures.push(square1)
+const SQUARE_1 = new RectangleShape(200, 25, 150, 150)
+SQUARE_1.draw()
+figures.push(CIRCLE_1)
+figures.push(SQUARE_1)
 
 requestAnimation()

@@ -1,6 +1,6 @@
-import {aBaseObject} from './aBaseObject'
+import {ABaseObject} from './ABaseObject'
 
-export class ellipseShape extends aBaseObject {
+export class EllipseShape extends ABaseObject {
     draw(radius: number, startAngle: number, endAngle: number, anticlockwise: boolean ){
       this.context.beginPath();
       this.context.arc(this.x, this.y, radius, startAngle, endAngle, anticlockwise);
