@@ -4,7 +4,7 @@ import { Scene } from "./Scene";
 
 export let canvas = <HTMLCanvasElement>document.getElementById('tutorial')
   
-const CIRCLE_1 = new EllipseShape(100, 100, 10, 10)
+const CIRCLE_1 = new EllipseShape(100, 100, 0, 0, 75, 0, Math.PI*2, true)
 const SQUARE_1 = new RectangleShape(200, 25, 150, 150)
 
 const SCENE_1 = new Scene()

@@ -14,11 +14,15 @@ export abstract class ABaseObject {
     this.width = width
     this.height = height
   }
-  protected abstract draw(radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): void
+  abstract draw(): void
 
   public movePosition(num1: number, num2: number){
     this.x= this.x + num1
     this.y= this.y + num2
+  }
+  public setSize(x: number, y: number, width: number, height:number): void {
+    this.width = width
+    this.height = height
   }
 }
 

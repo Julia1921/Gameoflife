@@ -1,18 +1,16 @@
 import { canvas } from "./main"
-import { EllipseShape } from "./EllipseShape"
-import { RectangleShape } from "./RectangleShape"
-
+import { ABaseObject } from "./ABaseObject"
 
 export class Scene {
-    protected figures: ( EllipseShape | RectangleShape )[] = []
+    protected figures: ( ABaseObject )[] = []
     drawAll(): void{
         for(let item of this.figures){
-            item.draw(75, 0, Math.PI*2, true)
+            item.draw()
             item.movePosition(0,0.1)
         }
     }
   
-    addObject(item:( EllipseShape | RectangleShape )): void{
+    addObject(item:( ABaseObject )): void{
         this.figures.push(item)
     } 
     
